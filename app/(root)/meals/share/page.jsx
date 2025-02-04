@@ -1,4 +1,4 @@
-import classes from './page.module.css';
+import ImagePicker from "@/components/ImagePicker";
 
 export default function ShareMealPage() {
     return (
@@ -11,6 +11,8 @@ export default function ShareMealPage() {
             </header>
             <main className={"w-[90%] max-w-[75rem] text-[white] mx-auto my-12 font-quicksand"}>
                 <form className={"max-w-[50rem]"}>
+                    <ImagePicker label={"Meal Image"} name={"meal-image"}></ImagePicker>
+
                     <div className={"flex gap-4"}>
                         <p className={"w-full mb-4 text-xl"}>
                             <label className={"block text-base uppercase text-[#b3aea5] font-bold mb-2"} htmlFor="name">Your name</label>
@@ -38,7 +40,6 @@ export default function ShareMealPage() {
                             required className={"block w-full rounded border text-xl text-[#ddd6cb] px-4 py-2 border-solid border-[#454952] bg-[#1c2027]"}
                         ></textarea>
                     </p>
-                    IMAGE PICKER
                     <p className={"text-right"}>
                         <button type="submit" className={"text-white cursor-pointer text-xl shadow-[0_2px_5px_rgba(0,0,0,0.3)] px-8 py-3 rounded-sm border-0 border-[none] bg-gradient-to-r from-amber-400 to-orange-400 hover:from-amber-600 hover:to-orange-600"}>Share Meal</button>
                     </p>
