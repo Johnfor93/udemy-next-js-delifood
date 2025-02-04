@@ -47,7 +47,7 @@ export default function ShareMealPage() {
                             required className={"block w-full rounded border text-xl text-[#ddd6cb] px-4 py-2 border-solid border-[#454952] bg-[#1c2027]"}
                         ></textarea>
                     </p>
-                    {state.message && <p className={"w-full mb-4 text-xl text-red-400"}>{state.message}</p>}
+                    {state.message && <p className={"w-full mb-4 text-xl text-red-400"}>{`state.message`}</p>}
                     <p className={"text-right"}>
                         <RecipeFormSubmitButton/>
                     </p>
