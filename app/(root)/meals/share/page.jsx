@@ -1,7 +1,13 @@
+"use client"
+
 import ImagePicker from "@/components/ImagePicker";
 import submitHandler from "@/lib/action";
+import RecipeFormSubmitButton from "@/components/Form/RecipeFormSubmitButton";
+import {useActionState} from "react";
 
 export default function ShareMealPage() {
+    const [state, formAction] = useActionState(submitHandler, {message: null});
+
     return (
         <>
             <header className={"gap-12 w-[90%] max-w-[75rem] text-[#ddd6cb] text-2xl mt-12 mb-20 mx-auto py-8"}>
@@ -11,7 +17,7 @@ export default function ShareMealPage() {
                 <p>Or any other meal you feel needs sharing!</p>
             </header>
             <main className={"w-[90%] max-w-[75rem] text-[white] mx-auto my-12 font-quicksand"}>
-                <form className={"max-w-[50rem]"} action={submitHandler}>
+                <form className={"max-w-[50rem]"} action={formAction}>
                     <ImagePicker label={"Meal Image"} name={"meal-image"} required={true}></ImagePicker>
 
                     <div className={"flex gap-4"}>
@@ -41,8 +47,9 @@ export default function ShareMealPage() {
                             required className={"block w-full rounded border text-xl text-[#ddd6cb] px-4 py-2 border-solid border-[#454952] bg-[#1c2027]"}
                         ></textarea>
                     </p>
+                    {state.message && <p className={"w-full mb-4 text-xl text-red-400"}>{state.message}</p>}
                     <p className={"text-right"}>
-                        <button type="submit" className={"text-white cursor-pointer text-xl shadow-[0_2px_5px_rgba(0,0,0,0.3)] px-8 py-3 rounded-sm border-0 border-[none] bg-gradient-to-r from-amber-400 to-orange-400 hover:from-amber-600 hover:to-orange-600"}>Share Meal</button>
+                        <RecipeFormSubmitButton/>
                     </p>
                 </form>
             </main>
