@@ -3,6 +3,11 @@ import Link from "next/link";
 import {getMeals} from "@/lib/meals";
 import {Suspense} from "react";
 
+export const metadata = {
+    title: "All Recipes",
+    description:"Browse the delicious recipe shared by our vibrant community."
+}
+
 async function Meal(){
     const meals = await getMeals();
 
@@ -12,7 +17,6 @@ async function Meal(){
 }
 
 export default async function MealsPage() {
-
   return (
     <>
       <header className={"gap-12 mt-12 mx-auto mb-6 w-[90%] max-w-[90rem] text-gray-50 text-2xl py-8"}>

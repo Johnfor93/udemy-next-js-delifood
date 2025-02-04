@@ -3,6 +3,18 @@ import {getMeal} from "@/lib/meals";
 import Image from "next/image";
 import {notFound} from "next/navigation";
 
+export async function generateMetadata({params}){
+    const data = await getMeal(params.slug);
+
+    if(!data){
+        notFound()
+    }
+    return {
+        title: `${data.title} | DeliFood`,
+        description: data.description,
+    }
+}
+
 export default async function MealDescriptionPage({params}) {
     const data = await getMeal(params.slug);
 
