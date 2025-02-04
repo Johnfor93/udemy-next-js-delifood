@@ -1,41 +1,9 @@
 import MealGrid from "@/components/meals/MealGrid";
 import Link from "next/link";
+import {getMeals} from "@/lib/meals";
 
-export default function MealsPage() {
-  const data = [
-    {
-      id: 1,
-      title: "HAHAHAHA",
-      slug: "ahahahha",
-      image: "/images/burger.jpg",
-      summary: "hahahah",
-      creator: "hahahahah",
-    },
-    {
-      id: 2,
-      title: "HAHAHAHA",
-      slug: "ahahahha",
-      image: "/images/burger.jpg",
-      summary: "hahahah",
-      creator: "hahahahah",
-    },
-    {
-      id: 3,
-      title: "HAHAHAHA",
-      slug: "ahahahha",
-      image: "/images/burger.jpg",
-      summary: "hahahah",
-      creator: "hahahahah",
-    },
-    {
-      id: 41,
-      title: "HAHAHAHA",
-      slug: "ahahahha",
-      image: "/images/burger.jpg",
-      summary: "hahahah",
-      creator: "hahahahah",
-    },
-  ];
+export default async function MealsPage() {
+  const meals = await getMeals();
   return (
     <>
       <header className={"gap-12 mt-12 mx-auto mb-6 w-[90%] max-w-[90rem] text-gray-50 text-2xl py-8"}>
@@ -50,7 +18,7 @@ export default function MealsPage() {
         </p>
       </header>
       <main className={" mx-auto text-gray-50 text-2xl text-center py-8"}>
-        <MealGrid meals={data} />
+        <MealGrid meals={meals} />
       </main>
     </>
   );
