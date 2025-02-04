@@ -1,9 +1,18 @@
 import MealGrid from "@/components/meals/MealGrid";
 import Link from "next/link";
 import {getMeals} from "@/lib/meals";
+import {Suspense} from "react";
+
+async function Meal(){
+    const meals = await getMeals();
+
+    return (
+        <MealGrid meals={meals} />
+    )
+}
 
 export default async function MealsPage() {
-  const meals = await getMeals();
+
   return (
     <>
       <header className={"gap-12 mt-12 mx-auto mb-6 w-[90%] max-w-[90rem] text-gray-50 text-2xl py-8"}>
@@ -17,8 +26,19 @@ export default async function MealsPage() {
           </Link>
         </p>
       </header>
+
       <main className={" mx-auto text-gray-50 text-2xl text-center py-8"}>
-        <MealGrid meals={meals} />
+          <Suspense fallback={
+              <>
+                  <div
+                      className={"w-6 aspect-square rounded-full animate-loading bg-gray-50 mx-auto"}></div>
+                  <p className={"text-center animate-pulse text-gray-50 text-2xl py-2"}>
+                      Fetching meals...
+                  </p>
+              </>
+          }>
+              <Meal />
+          </Suspense>
       </main>
     </>
   );
