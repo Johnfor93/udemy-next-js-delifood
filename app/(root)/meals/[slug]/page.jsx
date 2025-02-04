@@ -1,9 +1,14 @@
 import {getMeal} from "@/lib/meals";
 
 import Image from "next/image";
+import {notFound} from "next/navigation";
 
 export default async function MealDescriptionPage({params}) {
     const data = await getMeal(params.slug);
+
+    if(!data) {
+        notFound();
+    }
 
     data.instructions = data.instructions.replace(/\n/g, "<br>");
     return (
