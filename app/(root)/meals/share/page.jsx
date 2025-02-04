@@ -1,4 +1,5 @@
 import ImagePicker from "@/components/ImagePicker";
+import submitHandler from "@/lib/action";
 
 export default function ShareMealPage() {
     return (
@@ -10,8 +11,8 @@ export default function ShareMealPage() {
                 <p>Or any other meal you feel needs sharing!</p>
             </header>
             <main className={"w-[90%] max-w-[75rem] text-[white] mx-auto my-12 font-quicksand"}>
-                <form className={"max-w-[50rem]"}>
-                    <ImagePicker label={"Meal Image"} name={"meal-image"}></ImagePicker>
+                <form className={"max-w-[50rem]"} action={submitHandler}>
+                    <ImagePicker label={"Meal Image"} name={"meal-image"} required={true}></ImagePicker>
 
                     <div className={"flex gap-4"}>
                         <p className={"w-full mb-4 text-xl"}>

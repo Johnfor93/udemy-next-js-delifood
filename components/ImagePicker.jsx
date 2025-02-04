@@ -3,7 +3,7 @@
 import {useRef, useState} from "react";
 import Image from "next/image";
 
-export default function ImagePicker({label, name}) {
+export default function ImagePicker({label, name, required}) {
     const [imageUploaded, setImageUploaded] = useState();
     const imagePicker = useRef();
 
@@ -14,7 +14,10 @@ export default function ImagePicker({label, name}) {
     function handleImageChange(event){
         const file = event.target.files[0];
 
-        if(!file) return;
+        if(!file) {
+            setImageUploaded(null);
+            return;
+        }
 
         const reader = new FileReader();
 
@@ -28,7 +31,7 @@ export default function ImagePicker({label, name}) {
         <label htmlFor={name} className={"block text-base uppercase text-[#b3aea5] font-bold mb-2"}>{label}</label>
         <div className={"flex flex-col items-start gap-6 mb-4"}>
             <input type="file" id={name} name={name} accept={"image/png,image/jpg,image/jpeg"} className={"hidden"}
-               ref={imagePicker} onChange={handleImageChange}/>
+               ref={imagePicker} onChange={handleImageChange} required={required}/>
             <div className={"flex items-center flex-col justify-center w-full min-h-48 relative border-2 border-solid aspect-video group"} onClick={handleClick}>
                 {!imageUploaded &&<button className={"cursor-pointer px-6 py-2 rounded-sm border-0 bg-[#a4abb9] hover:bg-[#b3b9c6]"}
                          type={"button"}>Upload Image
